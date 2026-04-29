@@ -5,7 +5,7 @@ import { NotificationService } from '../../Services/notificationServices';
 @Component({
   selector: 'app-notification',
   imports: [CommonModule],
-  templateUrl: './Notification.html',
+  templateUrl: './NotificationMessage.html',
   styles: '',
 })
 export class NotificationComponent {
