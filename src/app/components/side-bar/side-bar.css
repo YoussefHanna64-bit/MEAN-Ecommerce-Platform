@@ -1,0 +1,6 @@
+.sidebar {
+    width: 256px;
+    border-right: 1px solid #e2e8f0;
+    position: sticky;
+    height: 100%;
+} 
