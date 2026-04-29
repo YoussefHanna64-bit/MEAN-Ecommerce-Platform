@@ -1,0 +1,16 @@
+@if (notification.message(); as msg) { @if (msg.type !== 'None') {
+<div
+  class="container-sm mt-3 shadow-sm py-3 rounded-3 text-center border-0"
+  [ngClass]="{
+           'bg-success text-white': msg.type === 'Success',
+           'bg-danger text-white': msg.type === 'Delete',
+           'bg-warning text-dark': msg.type === 'Warning',
+           'bg-primary text-white': msg.type === 'Update',
+         }"
+>
+  <h5 class="mb-0 fw-bold">
+    <span class="me-2">{{ msg.type }}:</span>
+    {{ msg.message }}
+  </h5>
+</div>
+} }
