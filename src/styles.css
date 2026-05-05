@@ -1,48 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    margin: 0;
-    padding: 0;
-    max-height: 100vh;
+* {
+  margin: 0;
+  padding: 0;
 }
+
 :root {
-    /* Color Tokens from your config */
-    --primary: #003d9b;
-    --primary-container: #0052cc;
-    --surface-container-lowest: #ffffff;
-    --surface-container-low: #eff4ff;
-    --background: #f8f9ff;
-    --on-background: #0b1c30;
-    --on-surface: #0b1c30;
-    --on-surface-variant: #434654;
-    --outline-variant: #c3c6d6;
-    --outline: #737685;
-    --error-container: #ffdad6;
-    --on-error-container: #93000a;
-    --error: #ba1a1a;
+  /* Color Tokens from your config */
+  --primary: #003d9b;
+  --primary-container: #0052cc;
+  --surface-container: #e5eeff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff4ff;
+  --background: #f8f9ff;
+  --on-background: #0b1c30;
+  --on-surface: #0b1c30;
+  --on-surface-variant: #434654;
+  --outline-variant: #c3c6d6;
+  --outline: #737685;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --error: #ba1a1a;
+  --success-green: #198754;
+  --custom-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
 
-    /* Spacing Tokens */
-    --xxl: 80px;
-    --xl: 48px;
-    --lg: 24px;
-    --md: 16px;
-    --sm: 8px;
-    --unit: 4px;
-    --margin: 32px;
-    --gutter: 24px;
+  /* Spacing Tokens */
+  --xxl: 80px;
+  --xl: 48px;
+  --lg: 24px;
+  --md: 16px;
+  --sm: 8px;
+  --unit: 4px;
+  --margin: 32px;
+  --gutter: 24px;
 
-    /* Radius */
-    --rounded-lg: 0.25rem; /* 4px */
-    --rounded-xl: 0.5rem;  /* 8px */
+  /* Radius */
+  --rounded-lg: 0.25rem; /* 4px */
+  --rounded-xl: 0.5rem; /* 8px */
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--background);
-    color: var(--on-background);
-    font-size: 16px; /* body-md */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-}  
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--on-background);
+  font-size: 16px; /* body-md */
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
