@@ -1,0 +1,178 @@
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  vertical-align: middle;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--md);
+}
+
+.gallery-item {
+  background-color: var(--surface-container);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.aspect-4-5 {
+  aspect-ratio: 4/5;
+}
+
+.aspect-square {
+  aspect-ratio: 1/1;
+}
+
+.aspect-16-9 {
+  aspect-ratio: 16/9;
+}
+
+/* Product Info Sidebar */
+.sticky-info {
+  position: sticky;
+  top: 6rem;
+}
+
+.product-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0.5rem 0;
+}
+
+.price-current {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: var(--outline);
+}
+
+.sale-badge {
+  background-color: var(--error-container);
+  color: var(--on-error-container);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Selectors */
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.color-btn.active {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.size-btn {
+  padding: 0.75rem;
+  border: 1px solid var(--outline-variant);
+  background: white;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.size-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.size-btn.active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.size-btn:disabled {
+  opacity: 0.4;
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+/* Buttons */
+.btn-add-cart {
+  background-color: var(--primary);
+  color: white;
+  padding: 1.5rem;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-add-cart:hover {
+  background-color: var(--primary-container);
+}
+
+.btn-add-cart:active {
+  transform: scale(0.98);
+}
+
+.btn-wishlist {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-wishlist:hover {
+  background-color: var(--surface-container);
+}
+
+/* Feature Cards */
+.feature-card {
+  background-color: white;
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}

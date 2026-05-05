@@ -4,20 +4,27 @@ import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 import { Product } from '../../models/productModel';
 import { ProductService } from '../../Services/productServices';
+import { Chatpot } from '../chatpot/chatpot';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, Chatpot],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
  products = signal<Product[]>([]);
+ chatpotOpen = signal<boolean>(false);
   productService = inject(ProductService);
 
   ngOnInit() {
     this.loadProducts();
   }
+
+  toggleChatpot() {
+    this.chatpotOpen.update(value => !value);
+  }
+
   loadProducts() {
     //console.log('Loading products');
     this.productService.getProducts().subscribe({

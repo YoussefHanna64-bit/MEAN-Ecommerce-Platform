@@ -1,0 +1,56 @@
+:root {
+  --primary-color: #003d9b;
+  --border-radius-xl: 0.5rem;
+}
+
+.chat-container {
+  margin-right: 100px;
+}
+
+/* AI Chat */
+.chat-window {
+  width: 400px;
+  height: 600px;
+  background: white;
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.chat-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+.chat-scroll {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.fab-button {
+  width: 56px;
+  height: 56px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
