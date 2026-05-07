@@ -23,7 +23,4 @@ export interface ProductResponse {
   data?: {
     products: Product[];
   };
-  products: Product[];
-  message?: string;
-  code?: number;
 }
