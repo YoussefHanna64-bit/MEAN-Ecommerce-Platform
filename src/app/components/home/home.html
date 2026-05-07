@@ -46,7 +46,7 @@
         <div class="product-card card h-100">
           <div class="product-img-wrapper">
             <img
-              [src]="product.images?.[0] || 'assets/placeholder.jpg'"
+              [src]="product.images[0] || 'assets/placeholder.jpg'"
               class="w-100 h-100 object-fit-cover"
               [alt]="product.name"
             />
@@ -68,7 +68,10 @@
             <div class="d-flex justify-content-between align-items-center">
               <span class="h5 fw-bold mb-0">${{ product.price }}</span>
 
-              <button class="btn btn-primary btn-sm px-3 d-flex align-items-center gap-2">
+              <button
+                class="btn btn-primary btn-sm px-3 d-flex align-items-center gap-2"
+                (click)="addToCart(product._id)"
+              >
                 <span class="material-symbols-outlined fs-6">shopping_cart</span> Add
               </button>
             </div>
