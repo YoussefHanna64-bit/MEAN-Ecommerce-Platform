@@ -129,6 +129,10 @@
     </div>
   </section>
 </main>
-<button class="ai-fab">
+@if (chatpotOpen()) {
+  <app-chatpot [onClose]="toggleChatpot"></app-chatpot>
+  <br><br>
+}
+<button class="ai-fab" (click)="toggleChatpot()">
   <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">smart_toy</span>
 </button>

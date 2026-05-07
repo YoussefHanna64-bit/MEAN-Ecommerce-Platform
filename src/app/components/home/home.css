@@ -49,7 +49,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 25px rgba(0, 61, 155, 0.3);
-    z-index: 1000;
+    z-index: 1070;
     border: none;
     transition: transform 0.2s;
 }

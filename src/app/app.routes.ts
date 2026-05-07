@@ -5,6 +5,9 @@ import { Main } from './components/main/main';
 import { Home } from './components/home/home';
 import { AboutUs } from './components/about-us/about-us';
 import { PaymentComponent } from './components/payment/payment';
+import { Chatpot } from './components/chatpot/chatpot';
+import { Cart } from './components/cart/cart';
+import { ProductDetails } from './components/product-details/product-details';
 
 export const routes: Routes = [
   {
@@ -41,6 +44,14 @@ export const routes: Routes = [
         path: 'payment',
         component: PaymentComponent,
       },
+      {
+        path: 'cart',
+        component: Cart,
+      },
+      {
+        path:"product/:id",
+        component:ProductDetails
+      }
     ],
   },
 ];

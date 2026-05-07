@@ -1,0 +1,55 @@
+<!-- AI CHAT OVERLAY -->
+<div class="chat-container fixed-bottom p-4 d-flex flex-column align-items-end" style="z-index: 1060;">
+    <div class="chat-window shadow-lg border">
+        <div class="chat-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <div class="position-relative">
+                    <div class="bg-white bg-opacity-25 rounded-circle p-1">
+                        <span class="material-symbols-outlined fs-5">smart_toy</span>
+                    </div>
+                    <span
+                        class="position-absolute bottom-0 end-0 bg-success border border-primary border-2 rounded-circle"
+                        style="width: 10px; height: 10px;"></span>
+                </div>
+                <div>
+                    <div class="fw-bold small lh-1">AI Assistant</div>
+                    <span class="text-white-50" style="font-size: 10px; text-transform: uppercase;">Always
+                        Active</span>
+                </div>
+            </div>
+            <button class="btn btn-link text-white p-0" (click)="closeChatpot()"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <div class="chat-scroll">
+            <div class="mb-4" style="max-width: 85%;">
+                <div class="bg-white p-3 rounded shadow-sm border" style="border-top-left-radius: 0 !important;">
+                    <p class="small m-0">Hello! I'm your E-SHOP concierge. How can I assist you with your premium
+                        experience today?</p>
+                </div>
+                <span class="text-muted" style="font-size: 10px; font-weight: 700;">AI ASSISTANT • 09:41 AM</span>
+            </div>
+
+            <div class="mb-4 ms-auto text-end" style="max-width: 85%;">
+                <div class="bg-primary text-white p-3 rounded shadow-sm" style="border-top-right-radius: 0 !important;">
+                    <p class="small m-0 text-start">I need help tracking a recent order.</p>
+                </div>
+                <span class="text-muted" style="font-size: 10px; font-weight: 700;">YOU • 09:42 AM</span>
+            </div>
+        </div>
+
+        <div class="p-3 bg-white border-top">
+            <div class="d-flex gap-2 mb-3 overflow-auto pb-1" style="scrollbar-width: none;">
+                <span class="badge bg-light text-dark fw-normal border p-2 cursor-pointer">Return policy?</span>
+                <span class="badge bg-light text-dark fw-normal border p-2 cursor-pointer">Size guide</span>
+            </div>
+            <div class="position-relative">
+                <input type="text" class="form-control border-0 bg-light py-2 px-3" style="font-size: 14px;"
+                    placeholder="Type your message...">
+                <button class="btn btn-primary btn-sm position-absolute top-50 end-0 translate-middle-y me-2">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
