@@ -23,5 +23,4 @@ export class ProductService {
   updateProduct(id: string, product: Product) {
     return this.http.patch<ProductResponse>(`${this.baseUrl}/${id}`, product);
   }
-
 }

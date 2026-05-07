@@ -1,116 +1,146 @@
 <main class="main-content">
-    <h1 class="page-title">Review Your Order</h1>
+  <h1 class="page-title">Review Your Order</h1>
 
-    <div class="row g-4 align-items-start">
-        <!-- Left: Cart Items -->
-        <div class="col-lg-7">
-            <div class="custom-card mb-3">
-                <h3 class="fw-semibold mb-4" style="font-size: 24px;">Shopping Bag (3 items)</h3>
+  <div class="row g-4 align-items-start">
+    <!-- Left: Cart Items -->
+    <div class="col-lg-7">
+      @if (cart()) {
+        <div class="custom-card mb-3">
+          <h3 class="fw-semibold mb-4" style="font-size: 24px">
+            Shopping Bag ({{ cart()?.cartItems?.length }} items)
+          </h3>
 
-                <app-product-card></app-product-card>
-                <app-product-card></app-product-card>
-                <app-product-card></app-product-card>
-
-            </div>
+          @for (item of cart()?.cartItems; track item.productId._id) {
+            <app-product-card [product]="item.productId" [quantity]="item.quantity">
+            </app-product-card>
+          }
         </div>
-
-        <!-- Right: Checkout & Summary -->
-        <div class="col-lg-5 sticky-summary">
-            <div class="custom-card mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-semibold m-0" style="font-size: 24px;">Secure Checkout</h3>
-                    <span class="material-symbols-outlined"
-                        style="color: var(--primary); font-variation-settings: 'FILL' 1;">lock</span>
-                </div>
-
-                <section class="mb-5">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <span class="step-indicator">1</span>
-                        <h6 class="text-uppercase tracking-wider m-0" style="font-size: 12px; font-weight: 700;">
-                            Shipping Address</h6>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <label class="form-label-custom">First Name</label>
-                            <input type="text" class="form-input-custom" placeholder="John">
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label-custom">Last Name</label>
-                            <input type="text" class="form-input-custom" placeholder="Doe">
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label-custom">Street Address</label>
-                            <input type="text" class="form-input-custom" placeholder="123 Luxury Ave, Suite 400">
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="step-indicator">2</span>
-                            <h6 class="text-uppercase tracking-wider m-0" style="font-size: 12px; font-weight: 700;">
-                                Payment Method</h6>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <span class="material-symbols-outlined"
-                                style="color: var(--outline); font-size: 20px;">credit_card</span>
-                            <span class="material-symbols-outlined"
-                                style="color: var(--outline); font-size: 20px;">account_balance_wallet</span>
-                        </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <label class="form-label-custom">Card Number</label>
-                            <div class="position-relative">
-                                <input type="text" class="form-input-custom pe-5" placeholder="0000 0000 0000 0000">
-                                <span
-                                    class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3"
-                                    style="color: var(--outline);">credit_card</span>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label-custom">Expiry Date</label>
-                            <input type="text" class="form-input-custom" placeholder="MM / YY">
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label-custom">CVC</label>
-                            <input type="text" class="form-input-custom" placeholder="123">
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="custom-card">
-                <h6 class="text-uppercase tracking-wider mb-4" style="font-size: 12px; font-weight: 700;">Order
-                    Summary</h6>
-                <div class="border-bottom pb-3 mb-3">
-                    <div class="summary-row">
-                        <span class="text-muted">Subtotal</span>
-                        <span class="fw-semibold">$2,220.00</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="text-muted">Shipping</span>
-                        <span class="fw-bold" style="color: var(--success-green);">FREE</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="text-muted">Estimated Tax</span>
-                        <span class="fw-semibold">$177.60</span>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-end mb-4">
-                    <h3 class="fw-semibold m-0" style="font-size: 24px;">Total</h3>
-                    <h2 class="fw-bold m-0" style="color: var(--primary); font-size: 30px;">$2,397.60</h2>
-                </div>
-
-                <button class="btn-place-order">
-                    <span>Place Order</span>
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-                <p class="text-center text-muted mt-3 mb-0" style="font-size: 12px;">By clicking 'Place Order' you
-                    agree to our Terms and Conditions.</p>
-            </div>
+      } @else {
+        <div class="custom-card mb-3 text-center py-5">
+          <p>Loading cart...</p>
         </div>
+      }
     </div>
+
+    <!-- Right: Checkout & Summary -->
+    <div class="col-lg-5 sticky-summary">
+      <div class="custom-card mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-semibold m-0" style="font-size: 24px">Secure Checkout</h3>
+          <span
+            class="material-symbols-outlined"
+            style="color: var(--primary); font-variation-settings: 'FILL' 1"
+            >lock</span
+          >
+        </div>
+
+        <section class="mb-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="step-indicator">1</span>
+            <h6 class="text-uppercase tracking-wider m-0" style="font-size: 12px; font-weight: 700">
+              Shipping Address
+            </h6>
+          </div>
+          <div class="row g-3">
+            <div class="col-6">
+              <label class="form-label-custom">First Name</label>
+              <input type="text" class="form-input-custom" placeholder="John" />
+            </div>
+            <div class="col-6">
+              <label class="form-label-custom">Last Name</label>
+              <input type="text" class="form-input-custom" placeholder="Doe" />
+            </div>
+            <div class="col-12">
+              <label class="form-label-custom">Street Address</label>
+              <input
+                type="text"
+                class="form-input-custom"
+                placeholder="123 Luxury Ave, Suite 400"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+              <span class="step-indicator">2</span>
+              <h6
+                class="text-uppercase tracking-wider m-0"
+                style="font-size: 12px; font-weight: 700"
+              >
+                Payment Method
+              </h6>
+            </div>
+            <div class="d-flex gap-2">
+              <span class="material-symbols-outlined" style="color: var(--outline); font-size: 20px"
+                >credit_card</span
+              >
+              <span class="material-symbols-outlined" style="color: var(--outline); font-size: 20px"
+                >account_balance_wallet</span
+              >
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label-custom">Card Number</label>
+              <div class="position-relative">
+                <input
+                  type="text"
+                  class="form-input-custom pe-5"
+                  placeholder="0000 0000 0000 0000"
+                />
+                <span
+                  class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3"
+                  style="color: var(--outline)"
+                  >credit_card</span
+                >
+              </div>
+            </div>
+            <div class="col-6">
+              <label class="form-label-custom">Expiry Date</label>
+              <input type="text" class="form-input-custom" placeholder="MM / YY" />
+            </div>
+            <div class="col-6">
+              <label class="form-label-custom">CVC</label>
+              <input type="text" class="form-input-custom" placeholder="123" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="custom-card">
+        <h6 class="text-uppercase tracking-wider mb-4" style="font-size: 12px; font-weight: 700">
+          Order Summary
+        </h6>
+        <div class="border-bottom pb-3 mb-3">
+          <div class="summary-row">
+            <span class="text-muted">Subtotal</span>
+            <span class="fw-semibold">$2,220.00</span>
+          </div>
+          <div class="summary-row">
+            <span class="text-muted">Shipping</span>
+            <span class="fw-bold" style="color: var(--success-green)">FREE</span>
+          </div>
+          <div class="summary-row">
+            <span class="text-muted">Estimated Tax</span>
+            <span class="fw-semibold">$177.60</span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-end mb-4">
+          <h3 class="fw-semibold m-0" style="font-size: 24px">Total</h3>
+          <h2 class="fw-bold m-0" style="color: var(--primary); font-size: 30px">$2,397.60</h2>
+        </div>
+
+        <button class="btn-place-order">
+          <span>Place Order</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+        <p class="text-center text-muted mt-3 mb-0" style="font-size: 12px">
+          By clicking 'Place Order' you agree to our Terms and Conditions.
+        </p>
+      </div>
+    </div>
+  </div>
 </main>

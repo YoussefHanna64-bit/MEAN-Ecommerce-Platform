@@ -15,9 +15,9 @@
         </nav>
         <div class="d-flex align-items-center gap-4">
             <button class="btn p-0 text-secondary"><span class="material-symbols-outlined">person</span></button>
-            <button class="btn p-0 text-secondary position-relative">
+            <button class="btn p-0 text-secondary position-relative" (click)="goToCart()">
                 <span class="material-symbols-outlined">shopping_cart</span>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ cartService.cartItemsCount() }}</span>
             </button>
         </div>
     </div>
