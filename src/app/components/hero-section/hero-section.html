@@ -1,0 +1,26 @@
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <img
+    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVhCWqRJJ6WEH122-5Z3T_PaiIX5rb-JwY-ygrN5v5vlm9H5qR_27B9kd5L5Un7FcarJOTEBlRHJL5YH4DjHTne-Z4qcS6QgQK69zXL3jxi4pMj6WwjWq1vaYx8k3h-Ay45W3y21NJRQwyptRq87tqrQ_2TYxzrAKzQVDxovZYmbCJdIfylSOyAEnE5484zodWr74hYHXCEEkdQsHnS0bW8Io8p0I-wWsSU7we5YF_5464YSfu8GGpifIIbw8gm0ABUl95gQlNlc8"
+    class="position-absolute w-100 h-100 object-fit-cover"
+    alt="Banner"
+  />
+  <div class="position-relative z-2 h-100 d-flex flex-column justify-content-center px-5 text-white">
+    <span
+      class="badge rounded-pill bg-primary mb-3 py-2 px-3 align-self-start"
+      style="font-size: 10px; letter-spacing: 2px"
+    >SUMMER 2024</span>
+    <h1 class="h1-custom mb-4" style="max-width: 500px">
+      Elevate Your Lifestyle With New Arrivals
+    </h1>
+    <p class="body-lg-custom mb-5" style="max-width: 400px; color: #e5eeff">
+      Discover the curated collection of premium essentials designed for the modern professional.
+    </p>
+    <button
+      class="btn btn-primary btn-lg d-flex align-items-center gap-2 fw-semibold align-self-start py-3 px-4 rounded-3"
+      (click)="shopCollection.emit()"
+    >
+      Shop Collection <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </div>
+</section>

@@ -1,137 +1,62 @@
 <main class="main-content">
-  <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <img
-      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVhCWqRJJ6WEH122-5Z3T_PaiIX5rb-JwY-ygrN5v5vlm9H5qR_27B9kd5L5Un7FcarJOTEBlRHJL5YH4DjHTne-Z4qcS6QgQK69zXL3jxi4pMj6WwjWq1vaYx8k3h-Ay45W3y21NJRQwyptRq87tqrQ_2TYxzrAKzQVDxovZYmbCJdIfylSOyAEnE5484zodWr74hYHXCEEkdQsHnS0bW8Io8p0I-wWsSU7we5YF_5464YSfu8GGpifIIbw8gm0ABUl95gQlNlc8"
-      class="position-absolute w-100 h-100 object-fit-cover"
-      alt="Banner"
-    />
-    <div
-      class="position-relative z-2 h-100 d-flex flex-column justify-content-center px-5 text-white"
-    >
-      <span
-        class="badge rounded-pill bg-primary mb-3 py-2 px-3 align-self-start"
-        style="font-size: 10px; letter-spacing: 2px"
-        >SUMMER 2024</span
-      >
-      <h1 class="h1-custom mb-4" style="max-width: 500px">
-        Elevate Your Lifestyle With New Arrivals
-      </h1>
-      <p class="body-lg-custom mb-5" style="max-width: 400px; color: #e5eeff">
-        Discover the curated collection of premium essentials designed for the modern professional.
-      </p>
+  <app-hero-section (shopCollection)="onShopCollection()" />
+
+  <div class="products-section">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <h2 class="h2-custom mb-1">Featured Products</h2>
+        <p class="text-secondary">Handpicked quality for your daily needs.</p>
+      </div>
       <button
-        class="btn btn-primary btn-lg d-flex align-items-center gap-2 fw-semibold align-self-start py-3 px-4 rounded-3"
+        class="btn btn-link text-primary text-decoration-none fw-semibold d-flex align-items-center gap-1"
       >
-        Shop Collection <span class="material-symbols-outlined">arrow_forward</span>
+        View All <span class="material-symbols-outlined fs-6">open_in_new</span>
       </button>
     </div>
-  </section>
 
-  <div class="d-flex justify-content-between align-items-end mb-4">
-    <div>
-      <h2 class="h2-custom mb-1">Featured Products</h2>
-      <p class="text-secondary">Handpicked quality for your daily needs.</p>
-    </div>
-    <button
-      class="btn btn-link text-primary text-decoration-none fw-semibold d-flex align-items-center gap-1"
-    >
-      View All <span class="material-symbols-outlined fs-6">open_in_new</span>
-    </button>
-  </div>
-
-  <div class="row g-4 mb-5">
-    @for (product of products(); track product._id) {
-      <div class="col-md-6 col-lg-4">
-        <div class="product-card card h-100">
-          <div class="product-img-wrapper">
-            <img
-              [src]="product.images[0] || 'assets/placeholder.jpg'"
-              class="w-100 h-100 object-fit-cover"
-              [alt]="product.name"
-            />
-
-            @if (product.stock > 0 && product.stock < 5) {
-              <span
-                class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark fw-bold px-2 py-1"
-                style="font-size: 10px"
-                >LOW STOCK</span
-              >
-            }
-          </div>
-          <div class="card-body p-4">
-            <p class="caption-custom text-secondary text-uppercase mb-1">
-              {{ product.category?.name || 'Product' }}
-            </p>
-            <h3 class="h3-custom fs-5 text-truncate mb-3">{{ product.name }}</h3>
-
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="h5 fw-bold mb-0">${{ product.price }}</span>
-
-              <button class="btn btn-primary btn-sm px-3 d-flex align-items-center gap-2">
-                <span class="material-symbols-outlined fs-6">shopping_cart</span> Add
-              </button>
+    <div class="row g-4 mb-5">
+      @for (product of products(); track product._id) {
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card card h-100">
+            <div class="product-img-wrapper">
+              <img
+                [src]="product.images[0] || 'assets/placeholder.jpg'"
+                class="w-100 h-100 object-fit-cover"
+                [alt]="product.name"
+              />
+              @if (product.stock > 0 && product.stock < 5) {
+                <span
+                  class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark fw-bold px-2 py-1"
+                  style="font-size: 10px"
+                >LOW STOCK</span>
+              }
+            </div>
+            <div class="card-body p-4">
+              <p class="caption-custom text-secondary text-uppercase mb-1">
+                {{ product.category?.name || 'Product' }}
+              </p>
+              <h3 class="h3-custom fs-5 text-truncate mb-3">{{ product.name }}</h3>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="h5 fw-bold mb-0">${{ product.price }}</span>
+                <button class="btn btn-primary btn-sm px-3 d-flex align-items-center gap-2">
+                  <span class="material-symbols-outlined fs-6">shopping_cart</span> Add
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    } @empty {
-      <div class="col-12 text-center">
-        <p>No products found.</p>
-      </div>
-    }
-  </div>
-
-  <section style="margin-top: var(--xxl)">
-    <div class="bento-grid">
-      <div class="bento-item bento-large">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvTjTFVu0RXzR0OtTbaqrladvI9os6BkiUuXVvFcAMtBk3qJbfwv4UAfZfrvcAB3r-uuDWei3V58Ytqi6YQXceITFAWG5rp6MVI-ra-GMgmzcKHbUn8ISSAWz1ik-y2SMiJDEBhfRcHKOEF_NAOCBHHavr257yQZSxEot2nli9s8zGhI31O_nyrIkYSdS3uWL0dQTlPO1K-nDKlimEfo4eN-9tFRh8R7LmzJIvLTcz8NH1tlPmy5EdTQkNKb_BErH2DuKsNClp6Ks"
-          alt="Tech"
-        />
-        <div
-          class="position-absolute inset-0 p-5 d-flex flex-column justify-content-end text-white"
-          style="background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent)"
-        >
-          <h3 class="display-5 fw-bold mb-3">Workspace Essentials</h3>
-          <p class="body-md-custom text-white-50 mb-4" style="max-width: 350px">
-            Upgrade your productivity with our latest ergonomic collection.
-          </p>
-          <button class="btn btn-light fw-bold px-4 align-self-start">Shop Now</button>
+      } @empty {
+        <div class="col-12 text-center">
+          <p>No products found.</p>
         </div>
-      </div>
-      <div class="bento-item">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfd6ctLnIbxtTBE5LU7yXa97GnmvGeKHDIam10fwW-OexhVGPANtUr0eF-w4EkcMu0Rm93XotvpcsDj2dG2KVXNLUrjc1jBxjXVo2wlMeI1CRR9WeuP8M7k6Yq5ITvOq2DbijeWM70nAoUAx293uLjbHxmPgrYF0FUb4ZH6usH1ok7G8L3sW-zU-s3DaiUXTvVWhU4uS9XAt9Vvzz086KuFvguNvsRjc-YtYREyaxQvvOZirrHyy-46ocPnLQKTEGm9S8NB3aH5GU"
-          alt="Sneakers"
-        />
-        <div
-          class="position-absolute inset-0 p-4 d-flex flex-column justify-content-end text-white"
-          style="background: rgba(0, 61, 155, 0.4); backdrop-filter: blur(2px)"
-        >
-          <h3 class="h4 fw-bold mb-1">Streetwear</h3>
-          <p class="caption-custom mb-0">Limited editions drop Friday.</p>
-        </div>
-      </div>
-      <div class="bento-item">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT0W85jIJg9usu3ZdwW3rNeQVqt6KympM_Qph0qhwuWuOMJp03-_aJ26xgJhdJdtvWIE0bBGHj8XkUDV7WSQ8c2-U31PQosKbd4K7IqShqkzOY8GX3JIakD9V7Z56165Ex1Ir-bWYXhTmnkJe_fJBX9w66XGUBEV9NSvHy83GmZdmZRKPQUPa-BNI7SuXE9JUcnYs-NeRj49RWqaT3x8U1IHHeRnyiadF4Z-FwlC1S1cxoh-dkgyZ5y22WvwfkWskSduLAU_N2w0A"
-          alt="Selfcare"
-        />
-        <div
-          class="position-absolute inset-0 p-4 d-flex flex-column justify-content-end text-white"
-          style="background: rgba(15, 23, 42, 0.6)"
-        >
-          <h3 class="h4 fw-bold mb-1">Self Care</h3>
-          <p class="caption-custom mb-0">Organic luxury for your skin.</p>
-        </div>
-      </div>
+      }
     </div>
-  </section>
+  </div>
 </main>
+
 @if (chatpotOpen()) {
-  <app-chatpot [onClose]="toggleChatpot"></app-chatpot>
-  <br><br>
+  <app-chatpot [onClose]="toggleChatpot" />
+  <br /><br />
 }
 <button class="ai-fab" (click)="toggleChatpot()">
   <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">smart_toy</span>
