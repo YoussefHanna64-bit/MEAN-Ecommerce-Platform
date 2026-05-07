@@ -46,7 +46,7 @@
         <div class="product-card card h-100">
           <div class="product-img-wrapper">
             <img
-              [src]="product.images?.[0] || 'assets/placeholder.jpg'"
+              [src]="product.images[0] || 'assets/placeholder.jpg'"
               class="w-100 h-100 object-fit-cover"
               [alt]="product.name"
             />
@@ -129,10 +129,17 @@
     </div>
   </section>
 </main>
-@if (chatpotOpen()) {
-  <app-chatpot [onClose]="toggleChatpot"></app-chatpot>
-  <br><br>
-}
-<button class="ai-fab" (click)="toggleChatpot()">
-  <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">smart_toy</span>
-</button>
+<div class="ai-fab-wrapper">
+  @if (!isChatOpen) {
+    <button class="ai-fab" (click)="isChatOpen = true" aria-label="Open AI Assistant">
+      <div class="pulse-ring"></div>
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1"
+        >smart_toy</span
+      >
+    </button>
+  }
+
+  @if (isChatOpen) {
+    <app-chatpot (closeChat)="isChatOpen = false"></app-chatpot>
+  }
+</div>

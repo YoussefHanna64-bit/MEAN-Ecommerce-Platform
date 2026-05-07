@@ -1,55 +1,82 @@
-<!-- AI CHAT OVERLAY -->
-<div class="chat-container fixed-bottom p-4 d-flex flex-column align-items-end" style="z-index: 1060;">
-    <div class="chat-window shadow-lg border">
-        <div class="chat-header d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-2">
-                <div class="position-relative">
-                    <div class="bg-white bg-opacity-25 rounded-circle p-1">
-                        <span class="material-symbols-outlined fs-5">smart_toy</span>
-                    </div>
-                    <span
-                        class="position-absolute bottom-0 end-0 bg-success border border-primary border-2 rounded-circle"
-                        style="width: 10px; height: 10px;"></span>
-                </div>
-                <div>
-                    <div class="fw-bold small lh-1">AI Assistant</div>
-                    <span class="text-white-50" style="font-size: 10px; text-transform: uppercase;">Always
-                        Active</span>
-                </div>
-            </div>
-            <button class="btn btn-link text-white p-0" (click)="closeChatpot()"><span class="material-symbols-outlined">close</span></button>
+<div class="chat-container fixed-bottom d-flex flex-column align-items-end" style="z-index: 1060">
+  <div class="chat-window">
+    <div class="chat-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <div class="position-relative">
+          <div class="bot-avatar d-flex align-items-center justify-content-center">
+            <span class="material-symbols-outlined fs-5">smart_toy</span>
+          </div>
+          <span class="online-indicator position-absolute bottom-0 end-0"></span>
         </div>
-
-        <div class="chat-scroll">
-            <div class="mb-4" style="max-width: 85%;">
-                <div class="bg-white p-3 rounded shadow-sm border" style="border-top-left-radius: 0 !important;">
-                    <p class="small m-0">Hello! I'm your E-SHOP concierge. How can I assist you with your premium
-                        experience today?</p>
-                </div>
-                <span class="text-muted" style="font-size: 10px; font-weight: 700;">AI ASSISTANT • 09:41 AM</span>
-            </div>
-
-            <div class="mb-4 ms-auto text-end" style="max-width: 85%;">
-                <div class="bg-primary text-white p-3 rounded shadow-sm" style="border-top-right-radius: 0 !important;">
-                    <p class="small m-0 text-start">I need help tracking a recent order.</p>
-                </div>
-                <span class="text-muted" style="font-size: 10px; font-weight: 700;">YOU • 09:42 AM</span>
-            </div>
+        <div>
+          <div class="header-title mb-1">E-SHOP Assistant</div>
+          <div class="header-subtitle d-flex align-items-center gap-1">
+            <span class="pulse-dot"></span> Online and ready
+          </div>
         </div>
-
-        <div class="p-3 bg-white border-top">
-            <div class="d-flex gap-2 mb-3 overflow-auto pb-1" style="scrollbar-width: none;">
-                <span class="badge bg-light text-dark fw-normal border p-2 cursor-pointer">Return policy?</span>
-                <span class="badge bg-light text-dark fw-normal border p-2 cursor-pointer">Size guide</span>
-            </div>
-            <div class="position-relative">
-                <input type="text" class="form-control border-0 bg-light py-2 px-3" style="font-size: 14px;"
-                    placeholder="Type your message...">
-                <button class="btn btn-primary btn-sm position-absolute top-50 end-0 translate-middle-y me-2">
-                    <span class="material-symbols-outlined" style="font-size: 16px;">send</span>
-                </button>
-            </div>
-        </div>
+      </div>
+      <button class="close-btn" (click)="closeChatpot()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
     </div>
 
+    <div class="chat-scroll" #chatScroll>
+      @for (msg of messages; track $index) {
+        @if (msg.sender === 'bot') {
+          <div class="mb-3 w-100">
+            <div class="msg-bubble bot-bubble">
+              {{ msg.text }}
+            </div>
+            <span class="msg-time text-start ms-2"
+              >Assistant • {{ msg.time | date: 'shortTime' }}</span
+            >
+          </div>
+        } @else {
+          <div class="mb-3 w-100 d-flex flex-column align-items-end">
+            <div class="msg-bubble user-bubble">
+              {{ msg.text }}
+            </div>
+            <span class="msg-time text-end me-2">You • {{ msg.time | date: 'shortTime' }}</span>
+          </div>
+        }
+      }
+
+      @if (isTyping) {
+        <div class="mb-3">
+          <div
+            class="msg-bubble bot-bubble d-flex align-items-center gap-1"
+            style="padding: 14px 16px"
+          >
+            <div class="typing-dot" style="animation-delay: 0s"></div>
+            <div class="typing-dot" style="animation-delay: 0.2s"></div>
+            <div class="typing-dot" style="animation-delay: 0.4s"></div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="chat-input-area">
+      <div class="d-flex gap-2 mb-3 overflow-auto pb-1 suggestion-container">
+        <span class="suggestion-badge text-nowrap" (click)="sendMessage('Return policy?')"
+          >Return policy?</span
+        >
+        <span class="suggestion-badge text-nowrap" (click)="sendMessage('Size guide')"
+          >Size guide</span
+        >
+      </div>
+
+      <div class="input-wrapper d-flex align-items-center">
+        <input
+          type="text"
+          class="chat-input flex-grow-1"
+          placeholder="Type your message..."
+          [(ngModel)]="userInput"
+          (keyup.enter)="sendMessage()"
+        />
+        <button class="send-btn" (click)="sendMessage()" [disabled]="!userInput.trim()">
+          <span class="material-symbols-outlined" style="font-size: 20px">send</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -13,8 +13,9 @@ import { Chatpot } from '../chatpot/chatpot';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
- products = signal<Product[]>([]);
- chatpotOpen = signal<boolean>(false);
+  isChatOpen: boolean = false;
+  products = signal<Product[]>([]);
+  chatpotOpen = signal<boolean>(false);
   productService = inject(ProductService);
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class Home implements OnInit {
   }
 
   toggleChatpot() {
-    this.chatpotOpen.update(value => !value);
+    this.chatpotOpen.update((value) => !value);
   }
 
   loadProducts() {
@@ -30,8 +31,8 @@ export class Home implements OnInit {
     this.productService.getProducts().subscribe({
       next: (res) => {
         //console.log(res.data?.products);
-       this.products.set(res.data?.products!);
-       //console.log(this.products());
+        this.products.set(res.data?.products!);
+        //console.log(this.products());
       },
       error: (err) => console.error('Failed to load products', err),
     });
