@@ -14,7 +14,25 @@
             <a href="#" class="text-secondary text-decoration-none label-sm-custom">Sale</a>
         </nav>
         <div class="d-flex align-items-center gap-4">
-            <button class="btn p-0 text-secondary"><span class="material-symbols-outlined">person</span></button>
+            <div class="dropdown" [class.show]="showUserMenu">
+                <button
+                    type="button"
+                    class="btn p-0 text-secondary dropdown-toggle d-flex align-items-center"
+                    (click)="toggleUserMenu()"
+                    aria-expanded="showUserMenu"
+                >
+                    <span class="material-symbols-outlined">person</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" [class.show]="showUserMenu">
+                    <li>
+                        <button class="dropdown-item" type="button" (click)="goToOrders()">Orders</button>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <button class="dropdown-item text-danger" type="button" (click)="logout()">Logout</button>
+                    </li>
+                </ul>
+            </div>
             <button class="btn p-0 text-secondary position-relative" (click)="goToCart()">
                 <span class="material-symbols-outlined">shopping_cart</span>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">{{ cartService.cartItemsCount() }}</span>

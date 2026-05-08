@@ -1,0 +1,79 @@
+<main class="main-content">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="page-title mb-1">My Orders</h1>
+      <p class="text-muted mb-0">Review your previous purchases and totals.</p>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="custom-card text-center py-5">
+      <p class="mb-0">Loading orders...</p>
+    </div>
+  } @else if (orderService.orders().length) {
+    <div class="row g-4">
+      @for (order of orderService.orders(); track order._id) {
+        <div class="col-12 col-lg-6">
+          <div class="custom-card order-card h-100">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <p class="text-uppercase text-muted small mb-1">Order ID</p>
+                <h5 class="fw-semibold mb-0 text-break">{{ order._id }}</h5>
+              </div>
+              <span class="badge rounded-pill bg-primary text-white">{{
+                order.paymentMethod
+              }}</span>
+            </div>
+
+            <div class="order-meta">
+              <div>
+                <span class="text-muted d-block small">Total</span>
+                <span class="fw-semibold">{{ order.totalPrice | currency: 'USD' }}</span>
+              </div>
+              <div>
+                <span class="text-muted d-block small">Created</span>
+                <span class="fw-semibold">{{ order.createdAt | date: 'medium' }}</span>
+              </div>
+            </div>
+
+            @if (order.products.length) {
+              <div class="border-top pt-3 mt-1">
+                <p class="text-uppercase text-muted small mb-2">Products</p>
+                <div class="d-grid gap-2">
+                  @for (item of order.products; track item._id) {
+                    <div
+                      class="d-flex justify-content-between align-items-center bg-light rounded-3 px-3 py-2"
+                    >
+                      <div class="d-flex align-items-center gap-3 me-3">
+                        @if (item.images.length) {
+                          <img class="order-product-thumb" [src]="item.images[0]" />
+                        }
+
+                        <div>
+                          <div class="fw-semibold">{{ item.productId.name }}</div>
+                          <div class="text-muted small">Qty: {{ item.quantity }}</div>
+                        </div>
+                      </div>
+                      <div class="fw-semibold text-nowrap text-primary">
+                        {{ item.price | currency: 'USD' }}
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            } @else {
+              <div class="border-top pt-3 mt-1">
+                <p class="text-muted small mb-0">No products were returned for this order yet.</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="custom-card text-center py-5">
+      <h5 class="fw-semibold mb-2">No orders yet</h5>
+      <p class="text-muted mb-0">Your previous orders will appear here once you place one.</p>
+    </div>
+  }
+</main>

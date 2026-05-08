@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../Services/cartService';
+import { UserService } from '../../Services/userService';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,9 @@ import { CartService } from '../../Services/cartService';
 })
 export class Header implements OnInit {
   cartService = inject(CartService);
+  userService = inject(UserService);
   router = inject(Router);
+  showUserMenu = false;
 
   ngOnInit() {
     this.cartService.viewCart().subscribe({
@@ -19,5 +22,20 @@ export class Header implements OnInit {
 
   goToCart() {
     this.router.navigate(['/main/cart']);
+  }
+
+  toggleUserMenu() {
+    this.showUserMenu = !this.showUserMenu;
+  }
+
+  goToOrders() {
+    this.showUserMenu = false;
+    this.router.navigate(['/main/orders']);
+  }
+
+  logout() {
+    this.showUserMenu = false;
+    this.userService.logout();
+    this.router.navigate(['/login']);
   }
 }

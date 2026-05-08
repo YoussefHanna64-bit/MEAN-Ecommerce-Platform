@@ -8,6 +8,7 @@ import { PaymentComponent } from './components/payment/payment';
 import { Chatpot } from './components/chatpot/chatpot';
 import { CartPage } from './components/cart/cart';
 import { ProductDetails } from './components/product-details/product-details';
+import { OrdersPage } from './components/orders/orders';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,10 @@ export const routes: Routes = [
       {
         path: 'cart',
         component: CartPage,
+      },
+      {
+        path: 'orders',
+        component: OrdersPage,
       },
       {
         path:"product/:id",

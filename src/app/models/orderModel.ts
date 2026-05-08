@@ -1,18 +1,26 @@
-export interface Order {
-  _id?: string;            
-  userId: string;           
-  cartId: string;          
-  totalPrice: number;
-  paymentMethod: 'cash' | 'card' | 'online'; 
-  createdAt?: string | Date;
-  updatedAt?: string | Date;
-  __v?: number
-}
-export interface OrderResponse {
-  status: string;
-  data?: {
-    order: Order;
+export interface OrderProduct {
+  productId: {
+    _id: string;
+    name: string;
   };
-  message?: string;
-  code?: number;
+  quantity: number;
+  price: number;
+  images: any[];
+  _id: string;
+}
+
+export interface Order {
+  _id: string;
+  userId: string;
+  cartId: string;
+  products: OrderProduct[];
+  totalPrice: number;
+  paymentMethod: 'card' | 'cash' | 'online';
+  createdAt: string;
+  updatedAt: string;
+  __v?: number;
+}
+
+export interface OrderResponse {
+  data: Order[];
 }
