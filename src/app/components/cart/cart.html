@@ -11,7 +11,11 @@
           </h3>
 
           @for (item of cart()?.cartItems; track item.productId._id) {
-            <app-product-card [product]="item.productId" [quantity]="item.quantity">
+            <app-product-card
+              [product]="item.productId"
+              [quantity]="item.quantity"
+              (cartUpdated)="getCart()"
+            >
             </app-product-card>
           }
         </div>
@@ -24,7 +28,7 @@
 
     <!-- Right: Checkout & Summary -->
     <div class="col-lg-5 sticky-summary">
-      <div class="custom-card mb-3">
+      <!-- <div class="custom-card mb-3">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="fw-semibold m-0" style="font-size: 24px">Secure Checkout</h3>
           <span
@@ -107,7 +111,7 @@
             </div>
           </div>
         </section>
-      </div>
+      </div> -->
 
       <div class="custom-card">
         <h6 class="text-uppercase tracking-wider mb-4" style="font-size: 12px; font-weight: 700">
@@ -116,7 +120,7 @@
         <div class="border-bottom pb-3 mb-3">
           <div class="summary-row">
             <span class="text-muted">Subtotal</span>
-            <span class="fw-semibold">$2,220.00</span>
+            <span class="fw-semibold">{{ cart()?.totalPrice || 0 | currency: 'USD' }}</span>
           </div>
           <div class="summary-row">
             <span class="text-muted">Shipping</span>
@@ -124,16 +128,22 @@
           </div>
           <div class="summary-row">
             <span class="text-muted">Estimated Tax</span>
-            <span class="fw-semibold">$177.60</span>
+            <span class="fw-semibold">{{
+              (cart()?.totalPrice ?? 0) * 0.14 | currency: 'USD'
+            }}</span>
           </div>
         </div>
 
         <div class="d-flex justify-content-between align-items-end mb-4">
           <h3 class="fw-semibold m-0" style="font-size: 24px">Total</h3>
-          <h2 class="fw-bold m-0" style="color: var(--primary); font-size: 30px">$2,397.60</h2>
+          <h2 class="fw-bold m-0" style="color: var(--primary); font-size: 30px">
+            {{
+              (cart()?.totalPrice ?? 0) + (cart()?.totalPrice ?? 0) * 0.14 || 0 | currency: 'USD'
+            }}
+          </h2>
         </div>
 
-        <button class="btn-place-order">
+        <button class="btn-place-order" (click)="placeOrder()">
           <span>Place Order</span>
           <span class="material-symbols-outlined">arrow_forward</span>
         </button>

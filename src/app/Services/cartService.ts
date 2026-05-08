@@ -23,9 +23,7 @@ export class CartService {
   }
 
   removeFromCart(productId: string) {
-    return this.http.delete<Cart>(this.baseUrl, {
-      body: { productId },
-    });
+    return this.http.patch<Cart>(this.baseUrl, { productId });
   }
 
   clearCart() {
