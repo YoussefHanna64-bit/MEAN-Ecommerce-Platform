@@ -1,14 +1,6 @@
 import { Routes } from '@angular/router';
-import { Login } from './components/login/login';
-import { Signup } from './components/signup/signup';
 import { Main } from './components/main/main';
-import { Home } from './components/home/home';
-import { AboutUs } from './components/about-us/about-us';
-import { PaymentComponent } from './components/payment/payment';
-import { CartPage } from './components/cart/cart';
-import { ProductDetails } from './components/product-details/product-details';
-import { OrdersPage } from './components/orders/orders';
-import { ProfilePage } from './components/profile/profile';
+import { MainGuard } from './guards/main-guard';
 
 export const routes: Routes = [
   {
@@ -18,15 +10,16 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: Login,
+    loadComponent: () => import('./pages/login/login').then((m) => m.Login),
   },
   {
     path: 'signup',
-    component: Signup,
+    loadComponent: () => import('./pages/signup/signup').then((m) => m.Signup),
   },
   {
     path: 'main',
     component: Main,
+    canActivate: [MainGuard],
     children: [
       {
         path: '',
@@ -35,32 +28,34 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: Home,
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
         path: 'about',
-        component: AboutUs,
+        loadComponent: () => import('./pages/about-us/about-us').then((m) => m.AboutUs),
       },
       {
         path: 'payment',
-        component: PaymentComponent,
+        loadComponent: () => import('./pages/payment/payment').then((m) => m.PaymentComponent),
       },
       {
         path: 'cart',
-        component: CartPage,
+        loadComponent: () => import('./pages/cart/cart').then((m) => m.CartPage),
       },
       {
         path: 'orders',
-        component: OrdersPage,
+        loadComponent: () => import('./pages/orders/orders').then((m) => m.OrdersPage),
       },
       {
         path: 'profile',
-        component: ProfilePage,
+        loadComponent: () => import('./pages/profile/profile').then((m) => m.ProfilePage),
       },
       {
         path: 'product/:id',
-        component: ProductDetails,
+        loadComponent: () =>
+          import('./pages/product-details/product-details').then((m) => m.ProductDetails),
       },
     ],
   },
+  { path: '**', redirectTo: 'home' },
 ];
