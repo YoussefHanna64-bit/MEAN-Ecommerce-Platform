@@ -1,18 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../Services/cartService';
 import { UserService } from '../../Services/userService';
+import { ProductService } from '../../Services/productServices';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.html',
   styleUrl: './header.css',
+  imports: [RouterLink],
 })
 export class Header implements OnInit {
   cartService = inject(CartService);
   userService = inject(UserService);
   router = inject(Router);
   showUserMenu = false;
+  productService = inject(ProductService);
 
   ngOnInit() {
     this.cartService.viewCart().subscribe({
@@ -21,6 +24,10 @@ export class Header implements OnInit {
         this.cartService.cartItemsCount.set(res.cartItems.length);
       },
     });
+  }
+  onSearchChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.productService.searchQuery.set(value);
   }
 
   goToCart() {
