@@ -5,18 +5,12 @@
   </div>
 
   <!-- Categories Section -->
-  <div class="categories-section mb-4">
-    <h3 class="h5 mb-3">Categories</h3>
-    <div class="d-flex flex-wrap gap-2">
-      @for (category of categories(); track category._id) {
-        <button class="btn btn-outline-primary btn-sm" type="button">
-          {{ category.title }}
-        </button>
-      } @empty {
-        <p class="text-muted">No categories available.</p>
-      }
-    </div>
-  </div>
+  <app-categories
+    [categories]="categories()"
+    [selectedCategory]="selectedCategory()"
+    (categorySelected)="selectCategory($event)"
+  >
+  </app-categories>
 
   <div class="row g-4">
     @for (product of products(); track product._id) {

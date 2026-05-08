@@ -1,7 +1,7 @@
 @if (notification.message(); as msg) {
   @if (msg.type !== 'None') {
     <div
-      class="toast show align-items-center text-white  border-0 position-fixed bottom-0 end-0 m-3"
+      class="toast show align-items-center text-white  border-0 position-fixed top-0 end-0 m-3"
      style="z-index: 99999 !important; opacity: 1 !important; visibility: visible !important; display: block !important;"
       [ngClass]="{
         'bg-success text-white': msg.type === 'Success',

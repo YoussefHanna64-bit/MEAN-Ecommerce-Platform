@@ -16,7 +16,10 @@ export class Header implements OnInit {
 
   ngOnInit() {
     this.cartService.viewCart().subscribe({
-      next: (res) => this.cartService.cartItemsCount.set(res.cartItems.length),
+      next: (res) => {
+        this.cartService.cart.set(res);
+        this.cartService.cartItemsCount.set(res.cartItems.length);
+      },
     });
   }
 
