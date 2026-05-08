@@ -10,7 +10,7 @@ export interface Product {
   discount: number;
   stock: number;
   rating?: Rating;
-  category?: any;
+  category: string | any;
   price: number;
   images: string[];
   createdAt?: string;

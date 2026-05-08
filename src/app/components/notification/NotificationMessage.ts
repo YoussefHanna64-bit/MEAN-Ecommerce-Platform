@@ -10,4 +10,5 @@ import { NotificationService } from '../../Services/notificationServices';
 })
 export class NotificationComponent {
   notification=inject(NotificationService)  
+  
 }
