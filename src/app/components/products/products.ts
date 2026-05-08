@@ -6,6 +6,7 @@ import { NotificationService } from '../../Services/notificationServices';
 import { CategoryService } from '../../Services/categoryServices';
 import { Category } from '../../models/categoryModel';
 import { Categories } from '../categories/categories';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,7 @@ import { Categories } from '../categories/categories';
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
-export class Products implements OnInit {
+export class Products {
   ngOnInit() {
     this.loadCategories();
   }
@@ -25,6 +26,8 @@ export class Products implements OnInit {
   categories = signal<Category[]>([]);
   selectedCategory = signal<string | null>(null);
   allProducts = signal<Product[]>([]);
+  router = inject(Router);
+
   loadCategories() {
     this.categoryService.getAllCategories().subscribe({
       next: (res) => {
@@ -34,8 +37,8 @@ export class Products implements OnInit {
       error: (err) => console.error('Failed to load categories', err),
     });
   }
+
   loadProducts() {
-    //console.log('Loading products');
     this.productService.getProducts().subscribe({
       next: (res) => {
         this.allProducts.set(res.data?.products!);
@@ -44,6 +47,7 @@ export class Products implements OnInit {
       error: (err) => console.error('Failed to load products', err),
     });
   }
+
   filterProducts() {
     const selectedId = this.selectedCategory();
     if (!selectedId) {
@@ -59,6 +63,7 @@ export class Products implements OnInit {
       this.products.set(filtered);
     }
   }
+
   selectCategory(categoryId: string | null) {
     this.selectedCategory.set(categoryId);
     this.filterProducts();
@@ -79,5 +84,10 @@ export class Products implements OnInit {
         this.notificationService.show('Failed to add item.', 'Delete');
       },
     });
+  }
+
+  openProduct(productId?: string) {
+    if (!productId) return;
+    this.router.navigate([`/main/product/${productId}`]);
   }
 }
