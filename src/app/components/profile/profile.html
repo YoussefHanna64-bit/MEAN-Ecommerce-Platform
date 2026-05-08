@@ -1,0 +1,98 @@
+<main class="main-content profile-page">
+  <div class="profile-shell">
+    <div class="profile-hero">
+      <p class="eyebrow mb-2">Account Settings</p>
+      <h1 class="page-title mb-2">My Profile</h1>
+      <p class="text-muted mb-0">Update your personal details</p>
+    </div>
+
+    <div class="custom-card profile-card">
+      <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="d-grid gap-3">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="label-sm-custom text-secondary mb-1 d-block" for="firstName"
+              >First Name</label
+            >
+            <input
+              class="form-input-custom"
+              id="firstName"
+              formControlName="firstName"
+              type="text"
+            />
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="label-sm-custom text-secondary mb-1 d-block" for="lastName"
+              >Last Name</label
+            >
+            <input class="form-input-custom" id="lastName" formControlName="lastName" type="text" />
+          </div>
+        </div>
+
+        <div>
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="phoneNumber"
+            >Phone Number</label
+          >
+          <input
+            class="form-input-custom"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            type="tel"
+            placeholder="123-456-7890"
+            maxlength="11"
+          />
+        </div>
+
+        <div>
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="email">Email</label>
+          <input
+            class="form-input-custom"
+            id="email"
+            formControlName="email"
+            type="email"
+            placeholder="name@example.com"
+          />
+        </div>
+
+        <div>
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="password"
+            >New Password</label
+          >
+          <input
+            class="form-input-custom"
+            id="password"
+            formControlName="password"
+            type="password"
+            placeholder="Leave blank to keep current password"
+          />
+        </div>
+
+        <div>
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="confirmPassword"
+            >Confirm Password</label
+          >
+          <input
+            class="form-input-custom"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Confirm new password"
+          />
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 pt-2">
+          <button
+            class="btn btn-outline-secondary px-4"
+            type="button"
+            (click)="router.navigate(['/main/home'])"
+          >
+            Cancel
+          </button>
+          <button class="btn btn-primary px-4" type="submit" [disabled]="loading()">
+            {{ loading() ? 'Saving...' : 'Save Changes' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

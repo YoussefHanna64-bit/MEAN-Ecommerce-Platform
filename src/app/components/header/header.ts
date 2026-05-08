@@ -33,6 +33,11 @@ export class Header implements OnInit {
     this.router.navigate(['/main/orders']);
   }
 
+  goToProfile() {
+    this.showUserMenu = false;
+    this.router.navigate(['/main/profile']);
+  }
+
   logout() {
     this.showUserMenu = false;
     this.userService.logout();

@@ -5,10 +5,10 @@ import { Main } from './components/main/main';
 import { Home } from './components/home/home';
 import { AboutUs } from './components/about-us/about-us';
 import { PaymentComponent } from './components/payment/payment';
-import { Chatpot } from './components/chatpot/chatpot';
 import { CartPage } from './components/cart/cart';
 import { ProductDetails } from './components/product-details/product-details';
 import { OrdersPage } from './components/orders/orders';
+import { ProfilePage } from './components/profile/profile';
 
 export const routes: Routes = [
   {
@@ -52,6 +52,10 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersPage,
+      },
+      {
+        path: 'profile',
+        component: ProfilePage,
       },
       {
         path:"product/:id",

@@ -25,6 +25,10 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" [class.show]="showUserMenu">
                     <li>
+                        <button class="dropdown-item" type="button" (click)="goToProfile()">Profile</button>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
                         <button class="dropdown-item" type="button" (click)="goToOrders()">Orders</button>
                     </li>
                     <li><hr class="dropdown-divider" /></li>
