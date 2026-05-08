@@ -22,11 +22,11 @@ export class UserService {
     return this.http.post<UserResponse>(`${this.baseUrl}/login`, { email, password });
   }
 
-  signup(firstName: string, lastName: string, age: number, email: string, password: string) {
+  signup(firstName: string, lastName: string, phoneNumber: string, email: string, password: string) {
     return this.http.post<UserResponse>(`${this.baseUrl}/register`, {
       firstName,
       lastName,
-      age,
+      phoneNumber,
       email,
       password,
     });
