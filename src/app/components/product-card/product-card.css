@@ -1,4 +1,4 @@
-/* Cart Items */
+
 .cart-item-img {
   width: 128px;
   height: 160px;
@@ -7,21 +7,3 @@
   border-radius: 4px;
 }
 
-.quantity-selector {
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--outline-variant);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.quantity-btn {
-  padding: 4px 12px;
-  background: none;
-  border: none;
-  transition: background-color 0.2s;
-}
-
-.quantity-btn:hover {
-  background-color: var(--surface-container-low);
-}

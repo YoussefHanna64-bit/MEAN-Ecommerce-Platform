@@ -36,7 +36,7 @@
   width: 100%;
 }
 
-/* Form Customization to match Tailwind UI */
+
 .form-input-custom {
   height: 48px;
   padding: 0 var(--md);
@@ -47,6 +47,7 @@
   transition: all 0.2s;
   outline: none;
 }
+
 .form-input-custom:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 1px var(--primary);
@@ -108,14 +109,6 @@
   z-index: -1;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-  vertical-align: middle;
-}
 .btn-primary-custom .spinner-border {
   color: #fff;
 }
