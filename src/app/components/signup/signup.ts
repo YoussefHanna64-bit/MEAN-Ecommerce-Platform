@@ -41,7 +41,7 @@ export class Signup {
     {
       firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      age: new FormControl('', [Validators.required, Validators.min(1), Validators.max(120)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: new FormControl('', [Validators.required]),
@@ -65,10 +65,10 @@ export class Signup {
   signup() {
     if (this.signupForm.invalid) return;
     this.isLoading = true;
-    const { firstName, lastName, age, email, password } = this.signupForm.value;
+    const { firstName, lastName, phoneNumber, email, password } = this.signupForm.value;
 
     this.userService
-      .signup(firstName, lastName, Number(age), email.toLowerCase(), password)
+      .signup(firstName, lastName, phoneNumber, email.toLowerCase(), password)
       .subscribe({
         next: (res) => {
           if (res.status === 'success' && res.data?.user) {

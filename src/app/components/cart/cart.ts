@@ -3,18 +3,19 @@ import { ProductCard } from '../product-card/product-card';
 import { CartService } from '../../Services/cartService';
 import { Cart } from '../../models/cartModel';
 import { NotificationService } from '../../Services/notificationServices';
+import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [ProductCard],
+  imports: [ProductCard, CurrencyPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
 export class CartPage {
   cartService = inject(CartService);
   notificationService = inject(NotificationService);
-
-  cart = signal<Cart | null>(null);
+  router = inject(Router);
 
   ngOnInit() {
     this.getCart();
@@ -23,8 +24,7 @@ export class CartPage {
   getCart() {
     this.cartService.viewCart().subscribe({
       next: (res) => {
-        this.cart.set(res);
-        console.log(res);
+        this.cartService.cart.set(res);
         this.cartService.cartItemsCount.set(res.cartItems.length);
       },
 
@@ -35,5 +35,9 @@ export class CartPage {
         );
       },
     });
+  }
+
+  placeOrder() {
+    this.router.navigate(['/main/payment']);
   }
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Order, OrderResponse } from '../models/orderModel';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { Order, OrderResponse } from '../models/orderModel';
 export class OrderService {
   baseUrl = 'http://localhost:5000/api/order';
   private http = inject(HttpClient);
+  
+  orders = signal<Order[]>([]);
 
   getAllOrders() {
     return this.http.get<OrderResponse>(`${this.baseUrl}/`);
