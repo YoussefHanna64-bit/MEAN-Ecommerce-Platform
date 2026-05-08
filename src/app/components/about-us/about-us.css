@@ -1,0 +1,15 @@
+.custom-card {
+  background: white;
+  padding: 48px 32px;
+  border-radius: 16px;
+}
+
+.text-primary {
+  font-size: 1.5rem;
+  line-height: 0;
+  margin-bottom: -4px;
+}
+
+.tracking-wider {
+  letter-spacing: 0.1em;
+}

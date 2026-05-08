@@ -58,9 +58,9 @@ export const routes: Routes = [
         component: ProfilePage,
       },
       {
-        path:"product/:id",
-        component:ProductDetails
-      }
+        path: 'product/:id',
+        component: ProductDetails,
+      },
     ],
   },
 ];
