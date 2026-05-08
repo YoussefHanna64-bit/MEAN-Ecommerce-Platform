@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { ProductService } from '../../Services/productServices';
 import { Product } from '../../models/productModel';
 import { CartService } from '../../Services/cartService';
@@ -17,6 +17,11 @@ import { Router } from '@angular/router';
 export class Products {
   ngOnInit() {
     this.loadCategories();
+  }
+  constructor() {
+    effect(() => {
+      this.filterProducts();
+    });
   }
   cartService = inject(CartService);
   notificationService = inject(NotificationService);
@@ -50,18 +55,22 @@ export class Products {
 
   filterProducts() {
     const selectedId = this.selectedCategory();
-    if (!selectedId) {
-      this.products.set(this.allProducts());
-    } else {
-      const selectedCategoryObject = this.categories().find((c) => c._id === selectedId);
-      const selectedTitle = selectedCategoryObject?.title;
-      const filtered = this.allProducts().filter((product) => {
-        const productTitle = product.category?.title || product.category;
-        return productTitle === selectedTitle;
-      });
+    const query = this.productService.searchQuery().toLowerCase().trim();
 
-      this.products.set(filtered);
+    let filtered = this.allProducts();
+    if (selectedId) {
+      const targetCategory = this.categories().find((c) => c._id === selectedId);
+      const targetTitle = targetCategory?.title;
+      filtered = filtered.filter((p) => (p.category?.title || p.category) === targetTitle);
     }
+    if (query) {
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(query) ||
+          (p.description && p.description.toLowerCase().includes(query)),
+      );
+    }
+    this.products.set(filtered);
   }
 
   selectCategory(categoryId: string | null) {

@@ -8,6 +8,7 @@ import { Product, ProductResponse } from '../models/productModel';
 export class ProductService {
   baseUrl = 'http://localhost:5000/api/products';
   private http = inject(HttpClient);
+    searchQuery = signal<string>('');
   getProducts() {
     return this.http.get<ProductResponse>(`${this.baseUrl}/`);
   }
