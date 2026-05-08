@@ -17,8 +17,6 @@ export class CartPage {
   notificationService = inject(NotificationService);
   router = inject(Router);
 
-  cart = signal<Cart | null>(null);
-
   ngOnInit() {
     this.getCart();
   }
@@ -26,8 +24,7 @@ export class CartPage {
   getCart() {
     this.cartService.viewCart().subscribe({
       next: (res) => {
-        this.cart.set(res);
-        console.log(res);
+        this.cartService.cart.set(res);
         this.cartService.cartItemsCount.set(res.cartItems.length);
       },
 

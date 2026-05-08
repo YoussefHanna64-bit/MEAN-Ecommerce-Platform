@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { CartService } from '../../Services/cartService';
 import { UserService } from '../../Services/userService';
 import { NotificationService } from '../../Services/notificationServices';
+import { OrderService } from '../../Services/orderServices';
+import { Order } from '../../models/orderModel';
 
 @Component({
   selector: 'app-payment',
@@ -23,6 +25,7 @@ export class PaymentComponent implements OnInit {
   cartTotal = 0;
 
   paymentForm!: FormGroup;
+  orderService = inject(OrderService);
 
   constructor(
     private fb: FormBuilder,
@@ -77,29 +80,38 @@ export class PaymentComponent implements OnInit {
       return;
     }
 
-    const subtotal = this.cartTotal;
-    const tax = subtotal * 0.14;
-    const totalAmount = subtotal + tax;
-    const finalAmount = Number(totalAmount.toFixed(2));
+    const finalAmount = Number((this.cartTotal * 1.14).toFixed(2));
 
     this.isLoading = true;
     this.createPaymentIntent(finalAmount).subscribe({
       next: () => {
-        this.isLoading = false;
-        this.showSuccess = true;
-        this.cartService.clearCart().subscribe({
-          next: () => this.cartService.cartItemsCount.set(0),
-        });
+        const orderData: any = {
+          userId: this.userService.user()?._id,
+          paymentMethod: 'card',
+        };
 
-        setTimeout(() => {
-          this.router.navigate(['/main/home']);
-        }, 3500);
+        this.orderService.addOrder(orderData).subscribe({
+          next: () => {
+            this.isLoading = false;
+            this.showSuccess = true;
+
+            this.cartService.cartItemsCount.set(0);
+
+            setTimeout(() => {
+              this.router.navigate(['/main/home']);
+            }, 3500);
+          },
+          error: (e) => {
+            this.isLoading = false;
+            this.notificationService.show('Payment confirmed, but order record failed.', 'Warning');
+          },
+        });
       },
       error: (e) => {
         this.isLoading = false;
         this.notificationService.show(
           e.error?.message || 'Failed to process payment. Please try again.',
-          'Delete',
+          'Warning',
         );
       },
     });

@@ -10,6 +10,7 @@ export class CartService {
   http = inject(HttpClient);
 
   cartItemsCount = signal<number>(0);
+  cart = signal<Cart | null>(null);
 
   viewCart() {
     return this.http.get<Cart>(this.baseUrl);
