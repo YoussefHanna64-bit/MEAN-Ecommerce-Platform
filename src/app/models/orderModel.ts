@@ -13,6 +13,7 @@ export interface Order {
   _id: string;
   userId: string;
   cartId: string;
+  address: string;
   products: OrderProduct[];
   totalPrice: number;
   paymentMethod: 'card' | 'cash' | 'online';

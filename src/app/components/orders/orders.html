@@ -36,6 +36,11 @@
               </div>
             </div>
 
+            <div class="border-top pt-3 mt-1">
+              <p class="text-uppercase text-muted small mb-2">Shipping Address</p>
+              <p class="fw-medium mb-0">{{ order.address }}</p>
+            </div>
+
             @if (order.products.length) {
               <div class="border-top pt-3 mt-1">
                 <p class="text-uppercase text-muted small mb-2">Products</p>

@@ -87,6 +87,7 @@ export class PaymentComponent implements OnInit {
       next: () => {
         const orderData: any = {
           userId: this.userService.user()?._id,
+          address: this.paymentForm.value.address,
           paymentMethod: 'card',
         };
 
