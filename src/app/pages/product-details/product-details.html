@@ -1,0 +1,120 @@
+<main class="content-container" style="padding-top: 6rem">
+  <div class="row g-5">
+    <div class="col-lg-7">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          @if (product() && mainImage()) {
+            <img [src]="mainImage()" [alt]="product()?.name" class="product-main-img" />
+          } @else {
+            <div class="product-main-empty">
+              <span class="material-symbols-outlined">image</span>
+              <p>No image available</p>
+            </div>
+          }
+        </div>
+
+        <div class="gallery-thumbs">
+          @if (product()) {
+            @for (img of product()!.images; track img) {
+              <div
+                class="thumb-wrapper"
+                [class.active]="mainImage() === img"
+                (click)="setMain(img)"
+              >
+                <img [src]="img" class="thumb-img" />
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="sticky-info">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="text-primary fw-bold text-uppercase small tracking-widest"
+            >Elite Series</span
+          >
+          <div class="d-flex align-items-center gap-1 text-warning">
+            <span class="material-symbols-outlined small" style="font-variation-settings: 'FILL' 1"
+              >star</span
+            >
+            <span class="material-symbols-outlined small" style="font-variation-settings: 'FILL' 1"
+              >star</span
+            >
+            <span class="material-symbols-outlined small" style="font-variation-settings: 'FILL' 1"
+              >star</span
+            >
+            <span class="material-symbols-outlined small" style="font-variation-settings: 'FILL' 1"
+              >star</span
+            >
+            <span class="material-symbols-outlined small">star</span>
+            <span class="text-muted small fw-medium ms-1"
+              >({{ product()?.rating?.count || 70 }} Reviews)</span
+            >
+          </div>
+        </div>
+
+        <h1 class="product-title">{{ product()?.name }}</h1>
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <span class="price-current">{{ product()?.price | currency: 'USD' }}</span>
+          @if (product()?.discount) {
+            <span class="price-old">
+              {{ product()?.price! / (1 - product()?.discount! / 100) | currency: 'USD' }}
+            </span>
+            <span class="sale-badge">SALE -{{ product()?.discount }}%</span>
+          }
+        </div>
+
+        <hr class="my-4 opacity-50" />
+
+        <p class="text-muted mb-4 leading-relaxed">
+          {{ product()?.description }}
+        </p>
+
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="quantity-selector">
+              <button class="quantity-btn" (click)="changeQuantity(-1)">
+                <span class="material-symbols-outlined">remove</span>
+              </button>
+              <span class="px-3 fw-bold">{{ quantity() }}</span>
+              <button class="quantity-btn" (click)="changeQuantity(1)">
+                <span class="material-symbols-outlined">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column gap-3 mb-4">
+          <button class="btn-add-cart" (click)="addToCart(product()?._id)">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            Add to Cart
+          </button>
+          <button class="btn-back" (click)="router.navigate(['/main/home'])">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Back to Products
+          </button>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="feature-card h-100">
+              <span class="material-symbols-outlined text-primary mb-2">local_shipping</span>
+              <div class="small fw-bold">Free Shipping</div>
+              <div class="text-muted" style="font-size: 11px">On orders over $150</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="feature-card h-100">
+              <span class="material-symbols-outlined text-primary mb-2">replay</span>
+              <div class="small fw-bold">Easy Returns</div>
+              <div class="text-muted" style="font-size: 11px">30-day money-back</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

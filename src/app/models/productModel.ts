@@ -10,7 +10,7 @@ export interface Product {
   discount: number;
   stock: number;
   rating?: Rating;
-  category?: any;
+  category: string | any;
   price: number;
   images: string[];
   createdAt?: string;
@@ -23,7 +23,4 @@ export interface ProductResponse {
   data?: {
     products: Product[];
   };
-  products: Product[];
-  message?: string;
-  code?: number;
 }

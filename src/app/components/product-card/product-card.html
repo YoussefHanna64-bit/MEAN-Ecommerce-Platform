@@ -1,27 +1,49 @@
 <div class="d-flex gap-4 pb-4 mb-4 border-bottom">
-    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6GStmejRA43EXBO0AUclVqU780hkQmX9DbOPWkHGX8MCUCSL2cLwtXE6SJXM2G0mrEGfN559Q3HB7JALiQ2HjMVkddEbVIpMUQ4JKlr5sju3ksMlZW1SMwZadzf6U-bhyQo3LUfWuVlW0sDq8Bbl04WF7BKcvca7z4AEWbpbx_CTozwKnqYMyHvQ8AyahN-Y_bwpJMEkV9c2oOGBmpkERq15rax8OZZ64idzrG46N1QA-PEImj1tHgJs_x9UA84kUqw4qzD00PAI"
-        class="cart-item-img">
-    <div class="flex-grow-1 d-flex flex-column justify-content-between">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h5 class="fw-semibold mb-1">Bespoke Navy Wool Overcoat</h5>
-                <p class="text-muted small">Size: 42R | Color: Deep Navy</p>
-            </div>
-            <span class="fw-bold" style="color: var(--primary);">$850.00</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="quantity-selector">
-                <button class="quantity-btn"><span class="material-symbols-outlined"
-                        style="font-size: 18px;">remove</span></button>
-                <span class="px-3 small fw-medium">1</span>
-                <button class="quantity-btn"><span class="material-symbols-outlined"
-                        style="font-size: 18px;">add</span></button>
-            </div>
-            <button class="btn btn-link p-0 text-decoration-none d-flex align-items-center gap-1"
-                style="color: var(--outline);">
-                <span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
-                <span class="small fw-medium">Remove</span>
-            </button>
-        </div>
+  <img [src]="product.images[0]" [alt]="product.name" class="cart-item-img" />
+
+  <div class="flex-grow-1 d-flex flex-column justify-content-between">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="fw-semibold mb-1">
+          {{ product.name }}
+        </h5>
+
+        <p class="text-muted small">
+          {{ product.description }}
+        </p>
+      </div>
+
+      <span class="fw-bold" style="color: var(--primary)"> ${{ product.price }} </span>
     </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="quantity-selector">
+        <button class="quantity-btn" (click)="changeQuantity(-1)">
+          <span class="material-symbols-outlined" style="font-size: 18px"> remove </span>
+        </button>
+
+        <span class="px-3 small fw-medium">
+          {{ quantity }}
+        </span>
+
+        <button
+          class="quantity-btn"
+          (click)="changeQuantity(1)"
+          [disabled]="quantity >= product.stock"
+        >
+          <span class="material-symbols-outlined" style="font-size: 18px"> add </span>
+        </button>
+      </div>
+
+      <button
+        class="btn btn-link p-0 text-decoration-none d-flex align-items-center gap-1"
+        style="color: var(--outline)"
+        (click)="deleteItem()"
+      >
+        <span class="material-symbols-outlined" style="font-size: 20px"> delete </span>
+
+        <span class="small fw-medium"> Remove </span>
+      </button>
+    </div>
+  </div>
 </div>

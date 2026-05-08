@@ -8,6 +8,7 @@ import { Product, ProductResponse } from '../models/productModel';
 export class ProductService {
   baseUrl = 'http://localhost:5000/api/products';
   private http = inject(HttpClient);
+    searchQuery = signal<string>('');
   getProducts() {
     return this.http.get<ProductResponse>(`${this.baseUrl}/`);
   }
@@ -15,13 +16,12 @@ export class ProductService {
     return this.http.get<ProductResponse>(`${this.baseUrl}/${id}`);
   }
   addProduct(product: Product) {
-    return this.http.post<Product>(`${this.baseUrl}/`, product);
+    return this.http.post<ProductResponse>(`${this.baseUrl}/`, product);
   }
   deleteProduct(id: string) {
-    return this.http.delete<Product>(`${this.baseUrl}/${id}`);
+    return this.http.delete<ProductResponse>(`${this.baseUrl}/${id}`);
   }
   updateProduct(id: string, product: Product) {
-    return this.http.patch<Product>(`${this.baseUrl}/${id}`, product);
+    return this.http.patch<ProductResponse>(`${this.baseUrl}/${id}`, product);
   }
-
 }

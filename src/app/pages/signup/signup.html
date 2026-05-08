@@ -1,0 +1,157 @@
+<main
+  class="flex-grow-1 d-flex align-items-center justify-content-center"
+  style="padding: var(--xxl) var(--margin)"
+>
+  <div style="width: 100%; max-width: 480px">
+    <div
+      class="bg-white auth-card-shadow border rounded-3"
+      style="padding: var(--xl); border-color: var(--outline-variant) !important"
+    >
+      <div
+        class="d-flex border-bottom mb-4"
+        style="gap: var(--md); border-color: var(--outline-variant) !important"
+      >
+        <button
+          class="pb-2 h3-custom text-secondary bg-transparent border-0 opacity-50"
+          (click)="switchToLogin()"
+        >
+          Login
+        </button>
+        <button
+          class="pb-2 h3-custom border-bottom border-primary border-2 bg-transparent border-0"
+          style="color: var(--primary) !important"
+          (click)="switchToSignup()"
+        >
+          Create Account
+        </button>
+      </div>
+
+      <div class="mb-4">
+        <h1 class="h2-custom mb-2">Create your account</h1>
+        <p class="text-secondary mb-0">Fill in the details below to get started.</p>
+      </div>
+
+      <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label class="label-sm-custom text-secondary mb-1 d-block" for="firstName"
+              >First Name</label
+            >
+            <input
+              formControlName="firstName"
+              class="form-input-custom"
+              id="firstName"
+              placeholder="Fname"
+              type="text"
+            />
+          </div>
+          <div class="col-6">
+            <label class="label-sm-custom text-secondary mb-1 d-block" for="lastName"
+              >Last Name</label
+            >
+            <input
+              formControlName="lastName"
+              class="form-input-custom"
+              id="lastName"
+              placeholder="Sname"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="phoneNumber"
+            >Phone Number</label
+          >
+          <input
+            formControlName="phoneNumber"
+            class="form-input-custom"
+            id="phoneNumber"
+            placeholder="123-456-7890"
+            type="tel"
+            maxlength="11"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="email"
+            >Email Address</label
+          >
+          <input
+            formControlName="email"
+            class="form-input-custom"
+            id="email"
+            placeholder="example@company.com"
+            type="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="password">Password</label>
+          <div class="position-relative">
+            <input
+              formControlName="password"
+              class="form-input-custom"
+              id="password"
+              placeholder="••••••••"
+              [type]="showPassword ? 'text' : 'password'"
+            />
+            <button
+              class="position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent pe-3 text-secondary"
+              type="button"
+              (click)="togglePassword()"
+            >
+              <span class="material-symbols-outlined" style="font-size: 20px">
+                {{ showPassword ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="label-sm-custom text-secondary mb-1 d-block" for="confirmPassword"
+            >Confirm Password</label
+          >
+          <div class="position-relative">
+            <input
+              formControlName="confirmPassword"
+              class="form-input-custom"
+              id="confirmPassword"
+              placeholder="••••••••"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+            />
+            <button
+              class="position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent pe-3 text-secondary"
+              type="button"
+              (click)="toggleConfirmPassword()"
+            >
+              <span class="material-symbols-outlined" style="font-size: 20px">
+                {{ showConfirmPassword ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
+          @if (
+            signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched
+          ) {
+            <p class="caption-custom text-danger mt-1 mb-0">Passwords do not match.</p>
+          }
+        </div>
+
+        <button
+          class="btn-primary-custom w-100 mt-4 d-flex align-items-center justify-content-center"
+          style="gap: var(--sm)"
+          type="submit"
+          [disabled]="signupForm.invalid"
+        >
+          @if (isLoading) {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span>Creating account...</span>
+          } @else {
+            Create Account
+            <span class="material-symbols-outlined">arrow_forward</span>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

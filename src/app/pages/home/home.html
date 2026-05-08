@@ -1,0 +1,17 @@
+<main class="main-content">
+  <app-products />
+</main>
+
+<div class="ai-fab-wrapper">
+  @if (!isChatOpen) {
+    <button class="ai-fab" (click)="isChatOpen = true" aria-label="Open AI Assistant">
+      <div class="pulse-ring"></div>
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1"
+        >smart_toy</span
+      >
+    </button>
+  }
+  @if (isChatOpen) {
+    <app-chatpot (closeChat)="isChatOpen = false" />
+  }
+</div>
