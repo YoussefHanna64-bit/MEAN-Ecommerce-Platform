@@ -125,3 +125,20 @@ The UI uses a mix of Bootstrap utility classes and custom styles to keep the lay
 ## License
 
 This project is provided for educational purposes as part of an Angular ecommerce application.
+
+##Video Link
+https://drive.google.com/file/d/1ZNYCqcs-QCWxrTqLSqoX8p4UsIPaCK2T/view?usp=sharing
+click on the previous link to see demo of the project
+
+##Node Project
+https://github.com/YoussefHanna64-bit/Node-Ecommerce-Platform.git
+clone this repo to download node project to test localy
+
+##env file for running
+PORT=5000
+MONGODB_URL=mongodb://Node_E-Commerce_Project:8qJvJ0qXzWTO9djB@ac-aoqe7ke-shard-00-00.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-01.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-02.azc5wbc.mongodb.net:27017/Node_E-Commerce?ssl=true&replicaSet=atlas-qv2k9t-shard-0&authSource=admin&appName=Cluster0
+JWT_SECRET=THIS_IS_THE_WORST_SECRET_KEY_EVER
+JWT_EXPIRE=1h
+STRIPE_SECRET_KEY=sk_test_51TRzDk2NbYu1cacqc1bmZfaPRuQwc6pF3eUUC6fEIusNZn3F9L3SFHv1627kZwnIRwx3LBFTRyBxDLxbYOjbyELN00vQVJfkyM
+OPENROUTER_API_KEY=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
+
