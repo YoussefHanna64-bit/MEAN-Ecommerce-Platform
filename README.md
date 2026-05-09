@@ -10,6 +10,45 @@ Carty is designed as a polished single-page shopping experience connected to a b
 
 ---
 
+## Project Demo
+
+Watch the full demo video here:
+
+```text
+https://drive.google.com/file/d/1ZNYCqcs-QCWxrTqLSqoX8p4UsIPaCK2T/view?usp=sharing
+```
+
+---
+
+## Backend Repository
+
+Clone the backend Node.js project from:
+
+```bash
+git clone https://github.com/YoussefHanna64-bit/Node-Ecommerce-Platform.git
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the backend project root and add the following:
+
+```env
+PORT=5000
+
+MONGODB_URL=mongodb://Node_E-Commerce_Project:8qJvJ0qXzWTO9djB@ac-aoqe7ke-shard-00-00.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-01.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-02.azc5wbc.mongodb.net:27017/Node_E-Commerce?ssl=true&replicaSet=atlas-qv2k9t-shard-0&authSource=admin&appName=Cluster0
+
+JWT_SECRET=THIS_IS_THE_WORST_SECRET_KEY_EVER
+JWT_EXPIRE=1h
+
+STRIPE_SECRET_KEY=sk_test_51TRzDk2NbYu1cacqc1bmZfaPRuQwc6pF3eUUC6fEIusNZn3F9L3SFHv1627kZwnIRwx3LBFTRyBxDLxbYOjbyELN00vQVJfkyM
+
+OPENROUTER_API_KEY=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
+```
+
+---
+
 ## Features
 
 - Authentication with login and signup
@@ -47,22 +86,23 @@ src/
     app.routes.ts
     app.css
     components/
-      about-us/
-      cart/
       chatpot/
       footer/
       header/
-      home/
-      login/
       main/
       notification/
+      product-card/
+      side-bar/
+    pages/
+      about-us/
+      cart/
+      home/
+      login/
       orders/
       payment/
-      product-card/
       product-details/
       profile/
       signup/
-      side-bar/
     guards/
     interceptors/
     models/
@@ -136,45 +176,6 @@ The app uses a bearer token stored in `localStorage` and attached through an HTT
 The UI uses a mix of Bootstrap utility classes and custom styles to keep the layout responsive and consistent.
 
 Shared styles that are used in multiple components are placed in `src/app/app.css` to avoid duplication.
-
----
-
-## Project Demo
-
-Watch the full demo video here:
-
-```text
-https://drive.google.com/file/d/1ZNYCqcs-QCWxrTqLSqoX8p4UsIPaCK2T/view?usp=sharing
-```
-
----
-
-## Backend Repository
-
-Clone the backend Node.js project from:
-
-```bash
-git clone https://github.com/YoussefHanna64-bit/Node-Ecommerce-Platform.git
-```
-
----
-
-## Environment Variables
-
-Create a `.env` file in the backend project root and add the following:
-
-```env
-PORT=5000
-
-MONGODB_URL=mongodb://Node_E-Commerce_Project:8qJvJ0qXzWTO9djB@ac-aoqe7ke-shard-00-00.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-01.azc5wbc.mongodb.net:27017,ac-aoqe7ke-shard-00-02.azc5wbc.mongodb.net:27017/Node_E-Commerce?ssl=true&replicaSet=atlas-qv2k9t-shard-0&authSource=admin&appName=Cluster0
-
-JWT_SECRET=THIS_IS_THE_WORST_SECRET_KEY_EVER
-JWT_EXPIRE=1h
-
-STRIPE_SECRET_KEY=sk_test_51TRzDk2NbYu1cacqc1bmZfaPRuQwc6pF3eUUC6fEIusNZn3F9L3SFHv1627kZwnIRwx3LBFTRyBxDLxbYOjbyELN00vQVJfkyM
-
-OPENROUTER_API_KEY=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
-```
 
 ---
 
