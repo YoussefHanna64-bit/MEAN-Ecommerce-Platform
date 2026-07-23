@@ -15,7 +15,7 @@ Carty is designed as a polished single-page shopping experience connected to a b
 Watch the full demo video here:
 
 ```text
-https://drive.google.com/file/d/1ZNYCqcs-QCWxrTqLSqoX8p4UsIPaCK2T/view?usp=sharing
+https://drive.google.com/file/d/1joBTU2eyh-JRh6KMP9HJMy9daEgyOlvr/view?usp=sharing
 ```
 
 ---
